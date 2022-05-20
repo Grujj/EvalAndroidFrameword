@@ -7,7 +7,7 @@
 
     <!-- Home page -->
     <string name="home_page_title">Ma liste de compétences</string>
-    <string name="home_empty_list_competences">Ajouter une nouvelle compétence à l\'aide du bouton \n \"Nouveau\" du menu</string>
+    <string name="home_empty_list_competences">Ajoutez une nouvelle compétence à l\'aide du bouton \n \"Nouveau\" du menu</string>
 
     <!-- Popup details -->
     <string name="popup_details_description">Description:</string>

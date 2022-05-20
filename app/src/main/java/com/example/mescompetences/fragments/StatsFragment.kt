@@ -44,7 +44,7 @@ class StatsFragment(
         val competences = CompetenceRepository.competences
         competences.sortBy { it.level }
 
-        val topCompetence = competences.first()
+        val topCompetence = competences.last()
 
         val recycler = view.findViewById<RecyclerView>(R.id.layout_top_competence)
         recycler.adapter = CompetenceAdapter(listOf(topCompetence))
