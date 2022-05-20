@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">Mes Competences</string>
+
+    <!-- Main -->
+    <string name="main_app_title">Mes compétences</string>
+    <string name="main_app_default_placeholder">Exemple de text</string>
+
+    <!-- Home page -->
+    <string name="home_page_title">Ma liste de compétences</string>
+
+    <!-- Popup details -->
+    <string name="popup_details_description">Description:</string>
+    <string name="popup_details_tags">Tags:</string>
+    <string name="popup_details_niveau">Niveau:</string>
+
+    <!-- Nouvelle competence -->
+    <string name="new_comp_page_title">Nouvelle compétence</string>
+
+    <!-- Nouvelle competence/Form -->
+    <string name="new_comp_form_name_placeholder">Nom de la compétence</string>
+    <string name="new_comp_form_description_placeholder">Description</string>
+    <string name="new_comp_form_tags_placeholder">Tags</string>
+    <string name="new_comp_form_submit_button">Ajouter</string>
+
+    <!-- Menu -->
+    <string name="menu_home">Home</string>
+    <string name="new_comp_new_fragment">Nouveau fragment</string>
+    <string name="bottom_nav_menu_home">Accueil</string>
+    <string name="bottom_nav_menu_new">Nouveau</string>
+    <string name="new_comp_description">Description</string>
+    <string name="popup_button_delete">Supprimer</string>
+    <string name="popup_level_minus">-</string>
+    <string name="popup_level_plus">+</string>
+    <string name="menu_stats">Statistiques</string>
+    <string name="stats_top_competence">Top compétence</string>
+    <string name="stats_total_level">Niveau total</string>
+    <string name="stats_last_competence">Dernière compétence</string>
+    <string name="stats_top_level">0</string>
+
+</resources>
