@@ -26,10 +26,12 @@ class StatsFragment(
     ): View? {
         val view = inflater.inflate(R.layout.fragment_stats, container, false)
 
-        handleTopCompetenceView(view)
-        handleAverageLevelView(view)
-        handleTotalLevelView(view)
-        handleLastCompetenceView(view)
+        if(CompetenceRepository.competences.isNotEmpty()) {
+            handleTopCompetenceView(view)
+            handleAverageLevelView(view)
+            handleTotalLevelView(view)
+            handleLastCompetenceView(view)
+        }
 
         return view
     }
@@ -39,8 +41,10 @@ class StatsFragment(
      */
     private fun handleTopCompetenceView(view: View): Unit {
 
-        val topCompetence = CompetenceRepository.competences
-            .reduce{ a, b -> if(a.level < b.level) b else a}
+        val competences = CompetenceRepository.competences
+        competences.sortBy { it.level }
+
+        val topCompetence = competences.first()
 
         val recycler = view.findViewById<RecyclerView>(R.id.layout_top_competence)
         recycler.adapter = CompetenceAdapter(listOf(topCompetence))
