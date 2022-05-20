@@ -34,7 +34,7 @@ class NewCompetenceFragment(
             val description = descriptionView.text.toString()
             val competence = CompetenceModel(name = name, tags = tags, description = description)
             CompetenceRepository.insert(competence)
-            mainActivity.loadFragment(HomeFragment(),R.id.page_title)
+            mainActivity.loadFragment(HomeFragment(),R.string.home_page_title)
         }
         return view
     }

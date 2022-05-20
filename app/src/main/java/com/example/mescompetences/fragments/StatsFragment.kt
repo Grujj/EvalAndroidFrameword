@@ -1,13 +1,10 @@
 package com.example.mescompetences.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mescompetences.MainActivity
@@ -15,7 +12,6 @@ import com.example.mescompetences.R
 import com.example.mescompetences.adapters.CompetenceAdapter
 import com.example.mescompetences.models.CompetenceModel
 import com.example.mescompetences.repositories.CompetenceRepository
-import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.*
 
@@ -31,6 +27,7 @@ class StatsFragment(
         val view = inflater.inflate(R.layout.fragment_stats, container, false)
 
         handleTopCompetenceView(view)
+        handleAverageLevelView(view)
         handleTotalLevelView(view)
         handleLastCompetenceView(view)
 
@@ -47,6 +44,21 @@ class StatsFragment(
 
         val recycler = view.findViewById<RecyclerView>(R.id.layout_top_competence)
         recycler.adapter = CompetenceAdapter(listOf(topCompetence))
+    }
+
+    /**
+     * Methode qui gere la view de la moyenne des niveaux de toutes les competences
+     */
+    private fun handleAverageLevelView(view: View): Unit {
+
+        val averageLevel = CompetenceRepository.competences
+            .map { competence -> competence.level }
+            .reduce { a, b -> a + b }
+            .div(CompetenceRepository.competences.size)
+            .toString()
+
+        val averageLevelView = view.findViewById<TextView>(R.id.stats_average_level)
+        averageLevelView.text = averageLevel
     }
 
     /**
@@ -73,7 +85,7 @@ class StatsFragment(
                 if(firstDateIsBefore(a, b)) b else a
             }
 
-        val recycler = view.findViewById<RecyclerView>(R.id.layout_last_competence)
+        val recycler = view.findViewById<RecyclerView>(R.id.recycler_last_competence)
         recycler.adapter = CompetenceAdapter(listOf(lastCompetenceUpdated))
     }
 

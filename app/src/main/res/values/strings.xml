@@ -7,6 +7,7 @@
 
     <!-- Home page -->
     <string name="home_page_title">Ma liste de compétences</string>
+    <string name="home_empty_list_competences">Ajouter une nouvelle compétence à l\'aide du bouton \n \"Nouveau\" du menu</string>
 
     <!-- Popup details -->
     <string name="popup_details_description">Description:</string>
@@ -32,6 +33,9 @@
     <string name="popup_level_minus">-</string>
     <string name="popup_level_plus">+</string>
     <string name="menu_stats">Statistiques</string>
+
+    <!-- Stats -->
+    <string name="stats_page_title">Statistiques</string>
     <string name="stats_top_competence">Top compétence</string>
     <string name="stats_total_level">Niveau total</string>
     <string name="stats_last_competence">Dernière compétence</string>

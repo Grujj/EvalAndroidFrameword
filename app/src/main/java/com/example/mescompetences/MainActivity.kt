@@ -18,20 +18,20 @@ class MainActivity : AppCompatActivity() {
 
         val navMenu = findViewById<BottomNavigationView>(R.id.nav_menu)
 
-        loadFragment(HomeFragment(), R.id.page_title)
+        loadFragment(HomeFragment(), R.string.home_page_title)
 
         navMenu.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.home_page -> {
-                    loadFragment(HomeFragment(), R.id.page_title)
+                    loadFragment(HomeFragment(), R.string.home_page_title)
                     return@setOnItemSelectedListener true
                 }
                 R.id.new_competence -> {
-                    loadFragment(NewCompetenceFragment(this), R.id.page_title)
+                    loadFragment(NewCompetenceFragment(this), R.string.new_comp_page_title)
                     return@setOnItemSelectedListener true
                 }
                 R.id.stats -> {
-                    loadFragment(StatsFragment(this), R.id.page_title)
+                    loadFragment(StatsFragment(this), R.string.stats_page_title)
                     return@setOnItemSelectedListener true
                 }
                 else -> false
@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun loadFragment(fragment: Fragment, titleId: Int) {
-        val pageTitleView = findViewById<TextView>(titleId)
+        val pageTitleView = findViewById<TextView>(R.id.page_title)
         pageTitleView.text = resources.getString(titleId)
         CompetenceRepository.updateAll {
             val transaction = supportFragmentManager.beginTransaction()

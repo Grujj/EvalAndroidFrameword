@@ -9,7 +9,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <!-- App -->
-    <color name="main">#61C0C6</color>
+    <color name="main">#FFBB86FC</color>
     <color name="red">#F00</color>
     <color name="dark_grey">#C4C4C4</color>
     <color name="grey">#AAA</color>
