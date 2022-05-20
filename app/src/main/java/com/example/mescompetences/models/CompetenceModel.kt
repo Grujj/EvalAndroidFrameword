@@ -10,7 +10,7 @@ class CompetenceModel(
     private var _level: Int = 0,
     val tags: List<String> = listOf(),
     val description: String = "",
-    val updateDate: String = LocalDateTime.now().toString()
+    var updateDate: String = LocalDateTime.now().toString()
 ){
     var level: Int
         get() = _level

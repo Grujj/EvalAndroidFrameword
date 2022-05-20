@@ -7,12 +7,14 @@ import android.os.Bundle
 import android.view.Window
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mescompetences.R
 import com.example.mescompetences.adapters.TagAdapter
 import com.example.mescompetences.models.CompetenceModel
 import com.example.mescompetences.repositories.CompetenceRepository
+import java.time.LocalDateTime
 
 class CompetenceDetailsPopup(context: Context, val competence: CompetenceModel): Dialog(context) {
 
@@ -26,8 +28,8 @@ class CompetenceDetailsPopup(context: Context, val competence: CompetenceModel):
         handleTagsView()
         handleDeleteButtonView()
         handleLevelView()
-        handleDecreaseLevelButtonView()
-        handleIncreaseLevelButtonView()
+        handleButtonsColor()
+        handleButtonsView()
     }
 
     private fun handleNameView(): Unit {
@@ -54,31 +56,50 @@ class CompetenceDetailsPopup(context: Context, val competence: CompetenceModel):
     }
 
     private fun handleLevelView(): Unit {
-        val level = findViewById<TextView>(R.id.level)
+        val level = findViewById<TextView>(R.id.level_label)
         level.text = competence.level.toString()
     }
 
-    private fun handleDecreaseLevelButtonView(): Unit {
-        val decreaseLevelButton = findViewById<ImageButton>(R.id.decrease_level_button)
-        decreaseLevelButton.setOnClickListener{
+    private fun handleButtonsView(): Unit {
+
+        val increaseButton = findViewById<ImageButton>(R.id.increase_level_button)
+        val decreaseButton = findViewById<ImageButton>(R.id.decrease_level_button)
+
+        increaseButton.setOnClickListener{
+            competence.level++
+            updateCompetence()
+            updateDetailsView()
+        }
+
+        decreaseButton.setOnClickListener{
             competence.level--
-            CompetenceRepository.insert(competence)
-            if(competence.level == 0)
-                decreaseLevelButton.setBackgroundColor(context.getColor(R.color.grey))
-            else
-                decreaseLevelButton.setBackgroundColor(context.getColor(R.color.red))
+            updateCompetence()
+            updateDetailsView()
         }
     }
 
-    private fun handleIncreaseLevelButtonView(): Unit {
-        val increaseLevelButton = findViewById<ImageButton>(R.id.increase_level_button)
-        increaseLevelButton.setOnClickListener{
-            competence.level++
-            CompetenceRepository.insert(competence)
-            if(competence.level == 20)
-                increaseLevelButton.setBackgroundColor(context.getColor(R.color.grey))
-            else
-                increaseLevelButton.setBackgroundColor(context.getColor(R.color.green))
+    private fun updateCompetence(): Unit {
+        competence.updateDate = LocalDateTime.now().toString()
+        CompetenceRepository.insert(competence)
+    }
+
+    private fun updateDetailsView(): Unit {
+        handleButtonsColor()
+        handleLevelView()
+    }
+
+    private fun handleButtonsColor(): Unit {
+
+        val increaseButton = findViewById<ImageButton>(R.id.increase_level_button)
+        val decreaseButton = findViewById<ImageButton>(R.id.decrease_level_button)
+
+        when (competence.level) {
+            20 -> increaseButton.setBackgroundColor(context.getColor(R.color.grey))
+            0 -> decreaseButton.setBackgroundColor(context.getColor(R.color.grey))
+            else -> {
+                increaseButton.setBackgroundColor(context.getColor(R.color.green))
+                decreaseButton.setBackgroundColor(context.getColor(R.color.red))
+            }
         }
     }
 }

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mescompetences.MainActivity
 import com.example.mescompetences.R
 import com.example.mescompetences.adapters.CompetenceAdapter
+import com.example.mescompetences.models.CompetenceModel
 import com.example.mescompetences.repositories.CompetenceRepository
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -36,15 +37,21 @@ class StatsFragment(
         return view
     }
 
+    /**
+     * Methode qui gere la view de la competence avec le plus haut niveau
+     */
     private fun handleTopCompetenceView(view: View): Unit {
 
-        val comp = CompetenceRepository.competences
+        val topCompetence = CompetenceRepository.competences
             .reduce{ a, b -> if(a.level < b.level) b else a}
 
         val recycler = view.findViewById<RecyclerView>(R.id.layout_top_competence)
-        recycler.adapter = CompetenceAdapter(listOf(comp))
+        recycler.adapter = CompetenceAdapter(listOf(topCompetence))
     }
 
+    /**
+     * Methode qui gere la view du niveau total de toutes les competences
+     */
     private fun handleTotalLevelView(view: View): Unit {
 
         val totalLevel = CompetenceRepository.competences
@@ -56,16 +63,26 @@ class StatsFragment(
         totalLevelView.text = totalLevel
     }
 
+    /**
+     * Methode qui gere la view de la derniere date mise a jour.
+     */
     private fun handleLastCompetenceView(view: View): Unit {
 
-        val comp = CompetenceRepository.competences
+        val lastCompetenceUpdated = CompetenceRepository.competences
             .reduce{ a, b ->
-                if(LocalDateTime.parse(a.updateDate).isBefore(LocalDateTime.parse(b.updateDate))) b else a
+                if(firstDateIsBefore(a, b)) b else a
             }
 
         val recycler = view.findViewById<RecyclerView>(R.id.layout_last_competence)
-        recycler.adapter = CompetenceAdapter(listOf(comp))
+        recycler.adapter = CompetenceAdapter(listOf(lastCompetenceUpdated))
     }
 
-
+    /**
+     * Methode qui recupere la date d une competence, la parse et la compare avec une autre.
+     * Si la premiere date est avant la deuxieme, renvoi true
+     * Sinon false
+     */
+    private fun firstDateIsBefore(date1: CompetenceModel, date2: CompetenceModel): Boolean{
+        return LocalDateTime.parse(date1.updateDate).isBefore(LocalDateTime.parse(date2.updateDate))
+    }
 }

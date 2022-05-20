@@ -16,7 +16,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/backgrounds/scenic"
+        android:src="@drawable/img_kotlin"
         android:adjustViewBounds="false"
         />
 
@@ -53,7 +53,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.506" />
+        app:layout_constraintVertical_bias="0.506"
+        android:layout_marginStart="5sp"
+        />
 
     <TextView
         android:id="@+id/comp_description"
@@ -63,6 +65,7 @@
         app:layout_constraintTop_toTopOf="@id/tag_recycler_view"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginTop="@dimen/default_margin"
-        android:text="Description"/>
+        android:text="Description"
+        android:layout_marginStart="5sp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
